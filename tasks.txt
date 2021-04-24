@@ -5,6 +5,7 @@ Procesar argumentos
 	- Comprobar fichero existe
 
 Comprobar linea
+Obtener cifra y texto de linea
 
 ____________________________________________________________
 
