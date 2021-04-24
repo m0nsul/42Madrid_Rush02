@@ -24,9 +24,11 @@ int	check_main(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	int	fd;
-	int	line_res;
+	int		fd;
+	int		line_res;
+	char	*line;
 
+	line = 0;
 	check_main(argc, argv);
 	fd = ft_open_file(DEFAULT_DICT);
 	if (fd == -1)
@@ -39,8 +41,8 @@ int	main(int argc, char **argv)
 	line_res = -2;
 	while (line_res <= -2)
 	{
-		line_res = ft_readline(fd);
-		printf("Read line return: %d\n", line_res);
+		line_res = ft_readline(fd, line);
+		printf("This line should be cheked: res(%d) - Line: %s \n", line_res, line);
 	}
 	
 	if (ft_close_file(fd) < 0)
