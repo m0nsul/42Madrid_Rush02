@@ -5,7 +5,7 @@ C_WHITE=\033[0;97m
 C_WHITEB=\033[1;97m
 C_RESET=\033[0;39m
 
-SRCS	= ./src/ft_strxcpy.c ./src/ft_file.c ./src/main.c ./src/ft_file_io.c
+SRCS	= ./src/ft_dict.c ./src/ft_file.c ./src/ft_file_io.c ./src/ft_split.c ./src/ft_str.c ./src/ft_strxcpy.c ./src/main.c
 OBJS	= ${SRCS:.c=.o}
 INCS	= includes
 NAME	= rush-02
@@ -51,5 +51,20 @@ test : re
 	@./${NAME} 10.4 | cat -e || true ;
 	@##
 	@echo "\n"
+
+testnocat : re
+	@echo "[$(C_YELLOWB)TESTING$(C_RESET)] $(C_WHITEB)Number: 42$(C_RESET)" ;
+	@./${NAME} 42 || true ;
+	@##
+	@echo "\n"
+	@echo "[$(C_YELLOWB)TESTING$(C_RESET)] $(C_WHITEB)Number: 0$(C_RESET)" ;
+	@./${NAME} 0 || true ;
+	@##
+	@echo "\n"
+	@echo "[$(C_YELLOWB)TESTING$(C_RESET)] $(C_WHITEB)Number: 10.4$(C_RESET)" ;
+	@./${NAME} 10.4 || true ;
+	@##
+	@echo "\n"
+
 
 .PHONY: all clean fclean re .c.o test

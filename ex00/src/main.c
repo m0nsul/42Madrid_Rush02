@@ -4,6 +4,7 @@
 #include "ft_dictionary.h"
 #include "ft_file.h"
 #include "ft_file_io.h"
+#include "ft_split.h"
 
 int	check_main(int argc, char **argv)
 {
@@ -24,31 +25,29 @@ int	check_main(int argc, char **argv)
 
 int	main(int argc, char **argv)
 {
-	int		fd;
-	int		line_res;
-	char	*line;
+	//char	*filestr;
+	char	**lines;
+	char	**duple;
+	int		i;
+	int		nlines;
+	// t_dict		*dict;
 
-	line = 0;
 	check_main(argc, argv);
-	fd = ft_open_file(DEFAULT_DICT);
-	if (fd == -1)
+	// dict = ft_dictcreate();
+	// dict->size = 0;
+	//filestr = ft_filetostr(DEFAULT_DICT);
+	lines = ft_filegetlines(DEFAULT_DICT);
+	nlines = ft_getlinesnum(lines);
+	i = 0;
+	while (i < nlines)
 	{
-		printf("Error Number % d\n", errno);
-		perror("Program\n");
-		return (1);
+		duple = ft_split(lines[i], ": ");
+		printf ("valor numerico: %s\tPalabra: %s\n", duple[0], duple[1]);
+		ft_free_split(duple);
+
+		i++;
 	}
-	printf("Opened the fd = % d\n", fd);
-	line_res = -2;
-	while (line_res <= -2)
-	{
-		line_res = ft_readline(fd, line);
-		printf("This line should be cheked: res(%d) - Line: %s \n", line_res, line);
-	}
-	
-	if (ft_close_file(fd) < 0)
-	{
-		perror("Program");
-		return (1);
-	}
-	printf("Closed the fd: %d\n", fd);
+
+
+
 }

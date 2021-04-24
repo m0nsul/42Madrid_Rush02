@@ -2,46 +2,53 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "ft_file.h"
-#include "ft_strxcpy.h"
+#include "ft_split.h"
 
-int	ft_readline(int fd, char *line)
+
+char	*ft_filetostr(char *path)
 {
-	char			buffer[SIZE_1BYTE];
-	char			*line_more;
-	unsigned int	u_total;
-	unsigned int	u_read;
+	int				file;
+	unsigned int	nbchars;
+	char			currchar;
+	char			*filestr;
+	int				i;
 
-	u_total = 0;
-	u_read = 1;
-	while (u_read)
-	{
-		u_read = read(fd, buffer, SIZE_1BYTE);
-		if (u_read == (unsigned int) -1  || (unsigned int) u_read == 0)
-			break ;
-		line_more = (char *) malloc((u_total + u_read + 1) * sizeof(char));
-		if (!(line_more))
-		{
-			u_read = (unsigned int) -3;
-			break ;
-		}
-		if (line_more != NULL)
-			ft_strncpy(line_more, line, u_total);
-		ft_strncpy(line_more + u_total, buffer, (unsigned int) u_read);
-		
-		
-		//free (line);
-		line = line_more;
-		// printf("\nPointer: %p \t line: \t %s", line, line);
-		
-		u_total += u_read;
-		
-		if (buffer[0] == '\n')
-		{
-			u_read = (unsigned int) -2;
-			break ;
-		}
-	}
-	printf("Pointer: %p \t line: \t %s\n", line, line);
-	return (u_read);
+	file = ft_open_file(path);
+	if (file < 0)
+		return (NULL);
+	nbchars = 0;
+	while (read(file, &currchar, 1))
+		nbchars++;
+	if (!(filestr = malloc(sizeof(*filestr) * (nbchars + 1))))
+		return (NULL);
+	close(file);
+	file = ft_open_file(path);
+	i = 0;
+	while (read(file, filestr + i, 1))
+		i++;
+	ft_close_file(file);
+	filestr[nbchars] = '\0';
+	return (filestr);
+}
 
+char	**ft_filegetlines(char *path)
+{
+	char	**lines;
+	char	*filestr;
+
+	if (!(filestr = ft_filetostr(path)))
+		return (NULL);
+	lines = ft_split(filestr, "\n");
+	free(filestr);
+	return (lines);
+}
+
+int	ft_getlinesnum(char **lines)
+{
+	int i;
+
+	i = 0;
+	while (lines[i])
+		i++;
+	return (i);
 }
