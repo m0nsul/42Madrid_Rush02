@@ -8,7 +8,7 @@ typedef struct s_dict_word
 	unsigned int	value;
 	char			*str;
 
-}	t_dict_word;
+}	t_dict_	word;
 
 typedef struct s_dict
 {
