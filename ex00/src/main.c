@@ -5,6 +5,7 @@
 #include "ft_file.h"
 #include "ft_file_io.h"
 #include "ft_split.h"
+#include "ft_strings_line.h"
 
 int	check_main(int argc, char **argv)
 {
@@ -23,31 +24,44 @@ int	check_main(int argc, char **argv)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+t_dict	*ft_crete_dict(char **lines)
 {
-	//char	*filestr;
-	char	**lines;
+	t_dict	*dict;
 	char	**duple;
 	int		i;
 	int		nlines;
-	// t_dict		*dict;
 
-	check_main(argc, argv);
-	// dict = ft_dictcreate();
-	// dict->size = 0;
-	//filestr = ft_filetostr(DEFAULT_DICT);
-	lines = ft_filegetlines(DEFAULT_DICT);
 	nlines = ft_getlinesnum(lines);
+	dict = ft_dictcreate(nlines);
 	i = 0;
+	printf ("valo");
 	while (i < nlines)
 	{
+		//printf ("Linea: %s\t Valid: %d\n",lines[i],  ft_checkline(lines[i]));
 		duple = ft_split(lines[i], ": ");
 		printf ("valor numerico: %s\tPalabra: %s\n", duple[0], duple[1]);
+		ft_dictaddword(dict, duple[1], ft_atoi(duple[0]));
 		ft_free_split(duple);
-
 		i++;
 	}
+	printf ("Dict size: %d\n", dict->size);
+	return (dict);
+}
 
-
-
+int	main(int argc, char **argv)
+{
+	char	**lines;
+	int		nlines;
+	t_dict	*dict;
+	
+	nlines = 0;
+	check_main(argc, argv);
+	
+	lines = ft_filegetlines(DEFAULT_DICT);
+	nlines = ft_getlinesnum(lines);
+	dict = ft_crete_dict(lines);
+	ft_dictprint(dict);
+	ft_dictsort(dict);
+	ft_dictprint(dict);
+	
 }

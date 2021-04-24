@@ -1,5 +1,25 @@
 #include <stdlib.h>
+#include <errno.h>
 #include "ft_str.h"
+
+char	*ft_strdup(char *src)
+{
+	int		len;
+	char	*dst;
+	int		i;
+
+	len = ft_strlen(src);
+	dst = (char *) malloc(len * sizeof(char));
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (dst == NULL)
+		errno = ENOMEM;
+	return (dst);
+}
 
 char	*ft_strndup(char *src, int pos, int size)
 {

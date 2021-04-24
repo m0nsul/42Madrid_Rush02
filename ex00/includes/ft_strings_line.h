@@ -3,6 +3,7 @@
 
 int		ft_checkline (char *str);
 void	ft_getlinevalues (char *str, int *value, char *phrase);
+int		ft_atoi(char *str);
 
 // Comprobar linea
 // 	int	ft_checkline (char *str);
