@@ -1,0 +1,19 @@
+Procesar argumentos
+	- Comprobar número de argumentos
+	- Comprobar argumento es solo numérico
+	- Comprobar tipo unsigned int 
+	- Comprobar fichero existe
+
+Comprobar linea
+
+____________________________________________________________
+
+- Crear diccionario:
+
+abrir fichero
+	while linea
+		leer linea
+		comprobar linea
+		añadir a diccionario
+	next
+
