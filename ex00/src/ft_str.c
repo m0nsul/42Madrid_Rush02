@@ -55,3 +55,15 @@ int		ft_strcmp(char *s1, char *s2)
 	}
 	return (*s1 - *s2);
 }
+
+char	*ft_strcat(char *dst, const char *src)
+{
+	char	*ptr;
+
+	ptr = dst + ft_strlen(dst);
+	while (*src != '\0')
+		*ptr++ = *src++;
+	*ptr = '\0';
+    return (dst);
+}
+ 

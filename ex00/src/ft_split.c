@@ -90,7 +90,7 @@ char	**ft_split(char *str, char *charset)
 	return (split);
 }
 
-void	ft_free_split(char **tab)
+void	ft_split_free(char **tab)
 {
 	int i;
 

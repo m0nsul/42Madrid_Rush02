@@ -5,7 +5,7 @@ C_WHITE=\033[0;97m
 C_WHITEB=\033[1;97m
 C_RESET=\033[0;39m
 
-SRCS	= ./src/ft_dictionary.c ./src/ft_file.c ./src/ft_file_io.c ./src/ft_split.c ./src/ft_str.c ./src/ft_strings_line.c ./src/ft_strxcpy.c ./src/main.c
+SRCS	= ./src/ft_strxcpy.c ./src/ft_file.c ./src/ft_strings_line.c ./src/ft_num2words.c ./src/ft_str.c ./src/ft_split.c ./src/main.c ./src/ft_dictionary.c ./src/ft_file_io.c
 OBJS	= ${SRCS:.c=.o}
 INCS	= includes
 NAME	= rush-02
