@@ -5,6 +5,8 @@
 #include "ft_dictionary.h"
 #include "ft_file_io.h"
 #include "ft_num2words.h"
+#include "ft_strings_line.h"
+#include "ft_others.h"
 
 int	check_main(int argc, char **argv)
 {
@@ -33,9 +35,9 @@ int	main(int argc, char **argv)
 	check_main(argc, argv);
 	lines = ft_filegetlines(DEFAULT_DICT);
 	dict = ft_filldict(lines);
-	ft_dictprint(dict);
+	// ft_dictprint(dict);
 	ft_dictsort(dict);
-	ft_dictprint(dict);
-	ft_num2words(1234, dict, str);
-	printf ("\n\n%s\n",str);
+	// ft_dictprint(dict);
+	ft_num2words(ft_atoi(argv[1]), dict, str, ft_numdigits(ft_atoi(argv[1])));
+	printf ("\n\n%u is said:\t%s\n",ft_atoi(argv[1]), str);
 }

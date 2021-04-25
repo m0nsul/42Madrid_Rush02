@@ -6,6 +6,7 @@
 #include "ft_file_io.h"
 #include "ft_str.h"
 #include "ft_enums.h"
+#include "ft_others.h"
 
 t_dict 	*ft_dictcreate(int nlines)
 {
@@ -32,6 +33,7 @@ t_dict_word	*ft_dictaddword(t_dict 	*dict, char *text, int value, t_bool is_vali
 	word->size = ft_strlen(text);
 	word->word = ft_strdup(text);
 	word->value = value;
+	word->pow = ft_numdigits(value);
 	word->is_valid = is_valid;
 	dict->words[dict->size++] = word;
 	return (word);
@@ -96,6 +98,7 @@ void	ft_dictprint(t_dict 	*dict)
 		printf("\n\t______WORD %d\t", i);
 		printf("Word valid: %d\t", dict->words[i]->is_valid);
 		printf("Word size: %d\t", dict->words[i]->size);
+		printf("Word pow: %d\t", dict->words[i]->pow);
 		printf("Word value: %d\t", dict->words[i]->value);
 		printf("Word word: %s", dict->words[i]->word);
 
